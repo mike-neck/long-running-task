@@ -20,5 +20,7 @@ jobs:
         name: setup go
         with:
           go-version: "1.17.2"
-      - run: make run -each "${{each}}" -until "${{until}}"
+      - run: make build
+        name: build
+      - run: build/long-running-task -each "${{each}}" -until "${{until}}"
         name: "long task each ${{each}} until ${{until}}"
