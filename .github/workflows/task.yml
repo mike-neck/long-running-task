@@ -11,7 +11,7 @@ jobs:
       matrix:
         each: [5, 10]
         until: [20, 120, 300]
-    name: "long run task each ${{each}} until ${{until}}"
+    name: "long run task each ${{matrix.each}} until ${{matrix.until}}"
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -22,5 +22,5 @@ jobs:
           go-version: "1.17.2"
       - run: make build
         name: build
-      - run: build/long-running-task -each "${{each}}" -until "${{until}}"
-        name: "long task each ${{each}} until ${{until}}"
+      - run: build/long-running-task -each "${{matrix.each}}" -until "${{matrix.until}}"
+        name: "long task each ${{matrix.each}} until ${{matrix.until}}"
